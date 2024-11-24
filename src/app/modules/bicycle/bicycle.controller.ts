@@ -32,7 +32,24 @@ const getAllByCycle = async (req: Request, res: Response) => {
   }
 };
 
+//get single cicyle
+const getSingleBicycle = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    const result = await bicycleServices.getSingleBicyclesFromDb(productId);
+
+    res.status(200).json({
+      message: 'get  single Bicycle successfully',
+      success: true,
+      data: result,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const bicycleContoller = {
   createBicycle,
   getAllByCycle,
+  getSingleBicycle,
 };
